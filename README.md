@@ -1,2 +1,2 @@
-# app
-App v1
+# cash4you
+Gerenciamento de empréstimos
