@@ -55,7 +55,7 @@
               <v-layout pt-3>
                 <v-flex>
                   {{ item.contract.customer.name }}
-                  <p>R${{ item.amount }}</p>
+                  <p>{{item.type}} - R${{item.valuecoletaentrega}}</p>
                   {{ address.street }}, {{ address.number }}
                   <span v-if="address.complement"
                     >- {{ address.complement }}</span
