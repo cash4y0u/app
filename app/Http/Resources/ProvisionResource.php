@@ -24,6 +24,10 @@ class ProvisionResource extends JsonResource
 
         $total_balance = round($this->contract->provisions->where('status', 'pending')->sum('amount'));
 
+<<<<<<< HEAD
+=======
+        /*V01E*/
+>>>>>>> 758ac62f9ab70214b9944050390d70861970c396
         $yesterday=Carbon::now()->subDays(1)->format('Y-m-d');
         $vlrcontract=number_format($this->contract->amount,2,',','.');
         $amount=number_format($this->amount, 2, ',', '.');
@@ -32,6 +36,10 @@ class ProvisionResource extends JsonResource
         }else{
             $type='Coleta';
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 758ac62f9ab70214b9944050390d70861970c396
         return [
             'id' => $this->id,
             'number' => $this->number,
