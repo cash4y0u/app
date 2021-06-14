@@ -23,6 +23,7 @@ class ProvisionResource extends JsonResource
         $fine = ($this->contract->rate_daily / 100) * $this->amount * now()->endOfDay()->diffInDays($maturity);
 
         $total_balance = round($this->contract->provisions->where('status', 'pending')->sum('amount'));
+
         /*V01E*/
         $yesterday=Carbon::now()->subDays(1)->format('Y-m-d');
         $vlrcontract=number_format($this->contract->amount,2,',','.');
