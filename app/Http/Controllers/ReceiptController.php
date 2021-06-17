@@ -19,13 +19,25 @@ class ReceiptController extends Controller
     {
         $date = now();
 
-
+        /*V01A*
         $provisions = Provision::with('contract')
        ->whereDate('maturity', $date)
         ->where('status', 'pending')
         ->orderBy('time', 'desc')
         ->get();
+        */
+        $yesterday=Carbon::now()->subDays(1)->format('Y-m-d'); /*V01A*/
+        $provisions2=Provision::with('contract')/*V01A*/
+            ->whereDate('created_at', $yesterday)/*V01A*/
+            ->where('number', '1.0')/*V01A*/
+            ->orderBy('time', 'desc'); /*V01A*/
 
+        $provisions = Provision::with('contract') /*V01A*/
+            ->whereDate('maturity', $date) /*V01A*/
+            ->where('status', 'pending') /*V01A*/
+            ->orderBy('time', 'desc') /*V01A*/
+            ->union($provisions2) /*V01A*/
+            ->get();  /*V01A*/
         $itinerary = [];
         foreach ($provisions as $provision) {
             foreach ($provision->contract->customer->adresses as $address) {
