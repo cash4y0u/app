@@ -76,7 +76,6 @@ class ProvisionResource extends JsonResource
         /* Procedimentos para calculo de distancia */
         $latbase = -23.508603373818936;
         $lngbase = -46.45354021401643;
-        if(!empty($latend)){
         $theta = $lngend - $lngbase;
         $radianos = sin(deg2rad($latend)) * sin(deg2rad($latbase)) +  cos(deg2rad($latend)) * cos(deg2rad($latbase)) * cos(deg2rad($theta));
         $radianos = acos($radianos);
@@ -84,9 +83,8 @@ class ProvisionResource extends JsonResource
         $miles = $radianos * 60 * 1.1515;
         $distancia=$miles * 1.609344;
         $distancia= number_format($distancia, 2, '.', '');
-        }else{
-            $distancia="n/a";
-        }
+    
+      
           
         return [
             'id' => $this->id,
