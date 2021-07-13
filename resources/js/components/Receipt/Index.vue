@@ -61,7 +61,8 @@
                     >- {{ address.complement }}</span
                   >
                 <v-chip small
-                      outline class="right">{{item.distancia}} km</v-chip>
+                      outline class="right">
+                      {{ item.distancia }} km </v-chip>
                 </v-flex>
               </v-layout>
             </template>
