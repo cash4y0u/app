@@ -69,7 +69,7 @@ class ProvisionResource extends JsonResource
         /* Os procedimentos abaixo são referentes ao json da api geocoding google*/
         $client = new Client();  /*V01B*/
         $geocoder = new Geocoder($client);  /*V01B*/
-        $geocoder->setApiKey(config('geocoder.key','AIzaSyDF-8sEkV9VX2LFxGvTxQTgo4-u4Os1HWc'));  /*V01B*/
+        $geocoder->setApiKey(config('geocoder.key','AIzaSyDvy19luj-x277RI_bQ9J0lekoQcCshaek'));  /*V01B*/
         $geocodes = $geocoder->getCoordinatesForAddress($enderecodistancia);  /*V01B*/
         $latend= $geocodes['lat'];  /*V01B*/
         $lngend=$geocodes['lng'];
