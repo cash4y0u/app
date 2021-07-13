@@ -4,9 +4,19 @@ namespace App\Http\Resources;
 
 use Carbon\Carbon;
 
-use App\Library\Geocode;
+//use App\Library\Geocode;
 use App\Http\Resources\ContractResource;
+use App\Http\Resources\CustomerResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Request;
+use App\Provision;
+use App\Contract;
+use App\Customer;
+use App\Console\Commands\GetCoordinates;
+use Spatie\Geocoder\Geocoder;
+
+use GuzzleHttp;
+use GuzzleHttp\Client;
 
 class ProvisionResource extends JsonResource
 {
@@ -33,6 +43,51 @@ class ProvisionResource extends JsonResource
             $type='Coleta'; /*V01A*/
         } /*V01A*/
 
+        $idContrato=$this->contract_id; /*  Pegando id do contrato */ /*V01B*/
+        $queryContract= Contract::with('customer')->where('id',$idContrato)->get(); /*  Pegando id do usuario a partir do contrato */ /*V01B*/
+        $idCustomer=0; /*  Pegando id do usuario a partir do contrato */ /*V01B*/
+        foreach($queryContract as $query){  /*V01B*/
+        $idCustomer=$query->customer_id;  /*V01B*/
+        }  /*V01B*/
+        $endereco="";   /*V01B*/
+        $result = Customer::where('id',$idCustomer)->first();  /*  Pegando enderecos  a partir do id do usuario */ /*V01B*/
+         /*V01B*/
+         foreach($result as $results){ 
+           $endereco=$result->adresses; 
+        }/*V01B*/
+
+        $numerodeenderecos = count($endereco); /*  Vendo quantos endereços estão cadastrados */ /*V01B*/
+        $enderecofavorito="";/*V01B*/
+
+        for($i=0;$i<$numerodeenderecos;$i++){/*V01B*/
+            if($endereco[$i]['favorite']=='true'){/*V01B*/
+               $enderecofavorito=$endereco[$i]; /*V01B*/ /*  Pegando o endereço favorito */ /*V01B*/
+            }/*V01B*/
+        }/*V01B*/
+        /* Criando endereço para jogar na API GOOGLE GEOCODING*/ /*V01B*/
+        $enderecodistancia=$enderecofavorito['street'] .", ". $enderecofavorito['number'] ." - ". $enderecofavorito['district']." - ". $enderecofavorito['city']; /*V01B*/
+        /* Os procedimentos abaixo são referentes ao json da api geocoding google*/
+        $client = new Client();  /*V01B*/
+        $geocoder = new Geocoder($client);  /*V01B*/
+        $geocoder->setApiKey(config('geocoder.key','AIzaSyDF-8sEkV9VX2LFxGvTxQTgo4-u4Os1HWc'));  /*V01B*/
+        $geocodes = $geocoder->getCoordinatesForAddress($enderecodistancia);  /*V01B*/
+        $latend= $geocodes['lat'];  /*V01B*/
+        $lngend=$geocodes['lng'];
+        /* Procedimentos para calculo de distancia */
+        $latbase = -23.508603373818936;
+        $lngbase = -46.45354021401643;
+        if(!empty($latend)){
+        $theta = $lngend - $lngbase;
+        $radianos = sin(deg2rad($latend)) * sin(deg2rad($latbase)) +  cos(deg2rad($latend)) * cos(deg2rad($latbase)) * cos(deg2rad($theta));
+        $radianos = acos($radianos);
+        $radianos = rad2deg($radianos);
+        $miles = $radianos * 60 * 1.1515;
+        $distancia=$miles * 1.609344;
+        $distancia= number_format($distancia, 2, '.', '');
+        }else{
+            $distancia="n/a";
+        }
+          
         return [
             'id' => $this->id,
             'number' => $this->number,
@@ -53,8 +108,9 @@ class ProvisionResource extends JsonResource
             'total_balance' => $total_balance,
             'coordinates' => $this->coordinates,
             'contract' => new ContractResource($this->contract),
-            'type'=> $type, //*VO1A*
-            'valuecoletaentrega'=> ($type=='Entrega'? $vlrcontract : $amount), //*VO1A*
+            'type'=> $type, //*V01A*
+            'valuecoletaentrega'=> ($type=='Entrega'? $vlrcontract : $amount), //*V01A*
+            'distancia'=> $distancia
         ];
     }
 }
