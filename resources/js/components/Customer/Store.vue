@@ -90,12 +90,7 @@
               </v-menu>
             </v-flex>
             <v-flex xs6>
-              <v-text-field v-validate="{required:true,email:true}"
-                            data-vv-validate-on="blur"
-                            data-vv-as="e-mail"
-                            data-vv-name="customer.email"
-                            :error-messages="errors.first('customer.email')"
-                            v-model="customer.email"
+              <v-text-field v-model="customer.email"
                             label="E-mail"></v-text-field>
             </v-flex>
             <v-flex xs6>
@@ -207,13 +202,7 @@
                                 label="Endereço"></v-text-field>
                 </v-flex>
                 <v-flex xs3>
-                  <v-text-field v-validate="{min:1, required:true, numeric:true}"
-                                data-vv-validate-on="blur"
-                                data-vv-as="número"
-                                data-vv-name="adresses.number"
-                                :error-messages="errors.first('adresses.number')"
-                                v-model="adresses.number"
-                                type="tel"
+                  <v-text-field v-model="adresses.number"
                                 label="Número"></v-text-field>
                 </v-flex>
                 <v-flex xs4>
