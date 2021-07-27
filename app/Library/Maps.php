@@ -6,7 +6,7 @@ use Illuminate\Support\Carbon;
 class Maps
 {
     private $api = 'https://maps.googleapis.com/maps/api/distancematrix/json';
-    private $api_key = 'AIzaSyAYJKek-sgDLP10aH-XW0RMtQGvX5lBoDc';
+    private $api_key = 'AIzaSyDvy19luj-x277RI_bQ9J0lekoQcCshaek';
 
     private $origins = 'Rua Bryonia, 270';
     private $destinations = '';
