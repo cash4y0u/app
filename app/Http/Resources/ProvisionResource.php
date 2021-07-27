@@ -65,6 +65,7 @@ class ProvisionResource extends JsonResource
             }/*V01B*/
         }/*V01B*/
         /* Criando endereço para jogar na API GOOGLE GEOCODING*/ /*V01B*/
+        if(isset($enderecofavorito['street'])){
         $enderecodistancia=$enderecofavorito['street'] .", ". $enderecofavorito['number'] ." - ". $enderecofavorito['district']." - ". $enderecofavorito['city']; /*V01B*/
         /* Os procedimentos abaixo são referentes ao json da api geocoding google*/
         $client = new Client();  /*V01B*/
@@ -84,7 +85,9 @@ class ProvisionResource extends JsonResource
         $distancia=$miles * 1.609344;
         $distancia= number_format($distancia, 2, '.', '');
     
-      
+        }else{
+            $distancia='n/a';
+        }
           
         return [
             'id' => $this->id,
