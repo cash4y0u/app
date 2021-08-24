@@ -9,6 +9,7 @@ import Statistic from "./components/Statistic.vue";
 import Customer from "./components/Customer/Index.vue";
 import CustomerShow from "./components/Customer/Show.vue";
 import CustomerStore from "./components/Customer/Store.vue";
+import CustomerEdit from "./components/Customer/Edit.vue";
 
 import Contract from "./components/Contract/Index.vue";
 import ContractShow from "./components/Contract/Show.vue";
@@ -101,6 +102,14 @@ export default new Router({
             path: "/customers/:id",
             name: "CustomerShow",
             component: CustomerShow,
+            meta: {
+                auth: true
+            }
+        },
+        {
+            path: "/customers/:id/edit",
+            name: "CustomerEdit",
+            component: CustomerEdit,
             meta: {
                 auth: true
             }

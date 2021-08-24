@@ -82,9 +82,12 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        $customer->update($request->only([
-            'adresses'
+         $customer->update($request->only([
+            'name', 'birth', 'document', 'email', 'phone', 'adresses'
         ]));
+        //$customer->update($request->only([
+        //    'adresses'
+       // ]));
         Artisan::call('drive:time');
     }
 

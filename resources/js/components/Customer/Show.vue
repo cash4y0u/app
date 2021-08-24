@@ -28,6 +28,12 @@
                      class="mr-3">
                 <v-icon>mdi-email</v-icon>
               </v-btn>
+              <v-btn @click="$router.push({name: 'CustomerEdit', params:{id: local.id}})"
+                     dark
+                     icon
+                     class="mr-3">
+                <v-icon>mdi-account-edit</v-icon>
+              </v-btn>
 
               <v-spacer></v-spacer>
 
@@ -68,7 +74,7 @@
             </v-list-tile-action>
 
             <v-list-tile-content>
-              <v-list-tile-title>{{local.birth}}</v-list-tile-title>
+              <v-list-tile-title>{{formatar(local.birth)}}</v-list-tile-title>
 
             </v-list-tile-content>
             <v-list-tile-action>
@@ -146,6 +152,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import moment from 'moment';
 export default {
   data() {
     return {
@@ -155,11 +162,13 @@ export default {
   },
 
   computed: {
-    ...mapGetters("customer", ["customer"])
-  },
+    ...mapGetters("customer", ["customer"]),
+
+      },
 
   methods: {
     ...mapActions("customer", ["showCustomer", "updateCustomer"]),
+      ...mapActions("upload", ["uploadFile", "deleteFile"]),
 
 
     favorite(index){
@@ -179,6 +188,9 @@ export default {
 
     },
 
+formatar(value){
+        return moment(value).format('DD/MM/YYYY');
+      }, 
 
 
     callPhone(number) {

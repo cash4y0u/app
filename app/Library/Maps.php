@@ -49,8 +49,9 @@ class Maps
 
         $json = json_decode($data, true);
 
-        return $json['rows'][0]['elements'][0]['duration']['value'];
-
+        if(!$json){
+            return $json['rows'][0]['elements'][0]['duration']['value'];
+        }
 
     }
 
