@@ -34,6 +34,12 @@
                      class="mr-3">
                 <v-icon>mdi-account-edit</v-icon>
               </v-btn>
+               <v-btn @click="sendTextContract(local)"
+                     dark
+                     icon
+                     class="mr-3">
+                <v-icon>mdi-message-bulleted</v-icon>
+              </v-btn>
 
               <v-spacer></v-spacer>
 
@@ -207,6 +213,24 @@ formatar(value){
         `waze://?q=${item.number} ${item.street}, ${item.city}&navigate=yes`,
         "_self"
       );
+    },
+      sendTextContract(local) {
+        let $endereco;
+        let $tipoResidencia;
+          for(let i = 0; i < local.adresses.length; i++) {
+            if(local.adresses[i].type=='Casa'){
+              $tipoResidencia='Casa';
+            }else{
+              $tipoResidencia='Residencial';
+            }
+              if(i!=0){
+                $endereco=`${$endereco}\n Endereco ${$tipoResidencia}: \n ${local.adresses[i].street}`;
+              }else{
+                 $endereco=`Endereco ${$tipoResidencia}: \n ${local.adresses[i].street}`;
+           }
+          }
+          let $mensagem =  `Olá,\n passando para lhe informar que sua parcela vence amanhã. Qual seria o endereço de coleta? \n ${$endereco}`;
+      window.open(`whatsapp://send?phone=55${local.phone}&text=${$mensagem}"`, "_self");
     }
   },
   created() {
