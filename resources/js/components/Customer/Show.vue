@@ -22,6 +22,8 @@
                      class="mr-3">
                 <v-icon>mdi-whatsapp</v-icon>
               </v-btn>
+
+        
               <v-btn @click="sendMail(local.email)"
                      dark
                      icon
@@ -224,13 +226,16 @@ formatar(value){
               $tipoResidencia='Residencial';
             }
               if(i!=0){
-                $endereco=`${$endereco}\n Endereco ${$tipoResidencia}: \n ${local.adresses[i].street}`;
+                $endereco=`${$endereco}\n *Endereco ${$tipoResidencia}:* \n- ${local.adresses[i].street},${local.adresses[i].number} - ${local.adresses[i].district}
+                \n${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode} `;
               }else{
-                 $endereco=`Endereco ${$tipoResidencia}: \n ${local.adresses[i].street}`;
+                 $endereco=`*Endereco ${$tipoResidencia}:* \n- ${local.adresses[i].street},${local.adresses[i].number} - ${local.adresses[i].district}
+                \n${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode}`;
            }
           }
-          let $mensagem =  `Olá,\n passando para lhe informar que sua parcela vence amanhã. Qual seria o endereço de coleta? \n ${$endereco}`;
-      window.open(`whatsapp://send?phone=55${local.phone}&text=${$mensagem}"`, "_self");
+          let $mensagem =  `Olá,\nEstou passando para lembrar que sua parcela vence *amanhã*.\nQual seria o endereço de coleta?\n ${$endereco}\nPor favor,responda assim que puder.\n*Cash4You*`;
+          let $mensagemencode= encodeURI($mensagem);
+      window.open(`whatsapp://send?phone=55${local.phone}&text=${$mensagemencode}`, "_self");
     }
   },
   created() {
