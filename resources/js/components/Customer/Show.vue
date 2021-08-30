@@ -226,11 +226,9 @@ formatar(value){
               $tipoResidencia='Residencial';
             }
               if(i!=0){
-                $endereco=`\n${$endereco}\n*Endereco ${$tipoResidencia}:*\n${local.adresses[i].street},${local.adresses[i].number} - ${local.adresses[i].district}
-                ${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode} `;
+                $endereco=`\n${$endereco}\n*Endereco ${$tipoResidencia}:*\n${local.adresses[i].street},${local.adresses[i].number} - ${local.adresses[i].district}\n${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode} `;
               }else{
-                 $endereco=`*Endereco ${$tipoResidencia}:*\n${local.adresses[i].street},${local.adresses[i].number} - ${local.adresses[i].district}
-                ${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode}`;
+                 $endereco=`*Endereco ${$tipoResidencia}:*\n${local.adresses[i].street},${local.adresses[i].number} - ${local.adresses[i].district}\n${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode}`;
            }
           }
           let $mensagem =  `*Olá*,\nEstou passando para lembrar que sua parcela vence *amanhã*.\nQual seria o endereço de coleta?\n ${$endereco}\n\nPor favor,responda assim que puder.\n*Cash4You*`;
