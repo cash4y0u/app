@@ -223,7 +223,7 @@ formatar(value){
             if(local.adresses[i].type=='Casa'){
               $tipoResidencia='Casa';
             }else{
-              $tipoResidencia='Residencial';
+              $tipoResidencia='Empresa';
             }
               if(i!=0){
                 $endereco=`\n${$endereco}\n*Endereco ${$tipoResidencia}:*\n${local.adresses[i].street},${local.adresses[i].number} - ${local.adresses[i].district}\n${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode} `;
