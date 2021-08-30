@@ -233,7 +233,7 @@ formatar(value){
                 \n${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode}`;
            }
           }
-          let $mensagem =  `Olá,\nEstou passando para lembrar que sua parcela vence *amanhã*.\nQual seria o endereço de coleta?\n ${$endereco}\nPor favor,responda assim que puder.\n*Cash4You*`;
+          let $mensagem =  `*Olá*,\nEstou passando para lembrar que sua parcela vence *amanhã*.\nQual seria o endereço de coleta?\n ${$endereco}\nPor favor,responda assim que puder.\n*Cash4You*`;
           let $mensagemencode= encodeURI($mensagem);
       window.open(`whatsapp://send?phone=55${local.phone}&text=${$mensagemencode}`, "_self");
     }
