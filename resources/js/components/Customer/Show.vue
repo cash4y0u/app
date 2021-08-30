@@ -226,14 +226,14 @@ formatar(value){
               $tipoResidencia='Residencial';
             }
               if(i!=0){
-                $endereco=`${$endereco}\n *Endereco ${$tipoResidencia}:* \n- ${local.adresses[i].street},${local.adresses[i].number} - ${local.adresses[i].district}
-                \n${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode} `;
+                $endereco=`\n${$endereco}\n*Endereco ${$tipoResidencia}:*\n${local.adresses[i].street},${local.adresses[i].number} - ${local.adresses[i].district}
+                ${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode} `;
               }else{
-                 $endereco=`*Endereco ${$tipoResidencia}:* \n- ${local.adresses[i].street},${local.adresses[i].number} - ${local.adresses[i].district}
-                \n${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode}`;
+                 $endereco=`*Endereco ${$tipoResidencia}:*\n${local.adresses[i].street},${local.adresses[i].number} - ${local.adresses[i].district}
+                ${local.adresses[i].city} - ${local.adresses[i].state} - ${local.adresses[i].zipcode}`;
            }
           }
-          let $mensagem =  `*Olá*,\nEstou passando para lembrar que sua parcela vence *amanhã*.\nQual seria o endereço de coleta?\n ${$endereco}\nPor favor,responda assim que puder.\n*Cash4You*`;
+          let $mensagem =  `*Olá*,\nEstou passando para lembrar que sua parcela vence *amanhã*.\nQual seria o endereço de coleta?\n ${$endereco}\n\nPor favor,responda assim que puder.\n*Cash4You*`;
           let $mensagemencode= encodeURI($mensagem);
       window.open(`whatsapp://send?phone=55${local.phone}&text=${$mensagemencode}`, "_self");
     }
