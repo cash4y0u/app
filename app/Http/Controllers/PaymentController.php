@@ -20,7 +20,7 @@ class PaymentController extends Controller
         ->whereDate('received_at', now())
         ->where('amount_paid', '<>', 0)
         ->where('status', 'pending')
-        ->orderBy('received_at', 'desc')->get();
+        ->orderBy('received_at', 'desc')->take(30)->get();
 
         
 

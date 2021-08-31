@@ -22,7 +22,7 @@ class ContractController extends Controller
      */
     public function index()
     {
-        $contracts = Contract::with('customer')->orderBy('created_at', 'desc')->get();
+        $contracts = Contract::with('customer')->orderBy('created_at', 'desc')->take(30)->get();
         return ContractResource::collection($contracts)->additional(['meta' => [
             'total' => $contracts->count(),
         ]]);
