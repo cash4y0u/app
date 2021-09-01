@@ -20,7 +20,7 @@ class ProvisionController extends Controller
     public function index()
     {
         $provisions = Provision::whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
-        ->orderBy('maturity', 'asc')->limit(50)
+        ->orderBy('maturity', 'asc')
         ->get();
 
     return ProvisionPendingResource::collection($provisions);
