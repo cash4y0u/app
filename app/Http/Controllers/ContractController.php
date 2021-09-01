@@ -23,8 +23,9 @@ class ContractController extends Controller
     public function index()
     {
         $contracts = Contract::with('customer')->orderBy('created_at', 'desc')->get();
+        $total = Contract::with('customer')->where('status', 'open')->get();
         return ContractResource::collection($contracts)->additional(['meta' => [
-            'total' => $contracts->count(),
+            'total' => $total->count(),
         ]]);
     }
 
