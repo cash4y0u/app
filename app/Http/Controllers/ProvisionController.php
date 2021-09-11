@@ -26,7 +26,7 @@ class ProvisionController extends Controller
 
         }
 
-        $provisions = Provision::select('contract_id')->whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
+        $provisions = Provision::with('contract')->whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
         ->orderBy('maturity', 'asc')
         ->get();
 
