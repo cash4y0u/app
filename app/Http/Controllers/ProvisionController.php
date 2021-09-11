@@ -18,19 +18,11 @@ class ProvisionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $paid=Provision::whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
-        ->where('status', 'pending')
-        ->orderBy('maturity', 'asc');
-        $provisions=Provision::whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
-        ->where('status', 'paid')
-        ->union($paid)
-        ->orderBy('maturity', 'asc')
-        ->get(); 
+    { 
 
-        //$provisions = Provision::whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
-        //->orderBy('maturity', 'asc')
-        //->get();
+        $provisions = Provision::whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
+        ->orderBy('maturity', 'asc')
+        ->cursor();
 
     return ProvisionPendingResource::collection($provisions);
     }
