@@ -20,7 +20,13 @@ class ProvisionController extends Controller
     public function index()
     { 
 
-        $provisions = Provision::whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
+        $total=Provision::get();
+
+        foreach($total as $total){
+
+        }
+
+        $provisions = Provision::select('contract_id')->whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
         ->orderBy('maturity', 'asc')
         ->cursor();
 
