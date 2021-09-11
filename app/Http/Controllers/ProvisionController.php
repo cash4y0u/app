@@ -21,8 +21,7 @@ class ProvisionController extends Controller
     {
         $paid=Provision::whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
         ->where('status', 'pending')
-        ->orderBy('maturity', 'asc')
-        ->get();
+        ->orderBy('maturity', 'asc');
         $provisions=Provision::whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
         ->where('status', 'paid')
         ->orderBy('maturity', 'asc')
