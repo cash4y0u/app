@@ -9,10 +9,13 @@ use App\Http\Resources\ProvisionResource;
 use App\Contract;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 class ProvisionController extends Controller
 {
-    /**
+    use QueryCacheable;
+    /*
+    *
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -20,13 +23,7 @@ class ProvisionController extends Controller
     public function index()
     { 
 
-        $total=Provision::get();
-
-        foreach($total as $total){
-
-        }
-
-        $provisions = Provision::with('contract')->whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
+        $provisions = Provision::cacheFor(36000)->with('contract')->whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
         ->orderBy('maturity', 'asc')
         ->get();
 
