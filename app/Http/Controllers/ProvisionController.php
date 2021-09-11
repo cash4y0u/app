@@ -14,6 +14,7 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
 class ProvisionController extends Controller
 {
     use QueryCacheable;
+    public $cacheFor = 3600;
     /*
     *
      * Display a listing of the resource.
@@ -23,7 +24,7 @@ class ProvisionController extends Controller
     public function index()
     { 
 
-        $provisions = Provision::cacheFor(36000)->with('contract')->whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
+        $provisions = Provision::with('contract')->whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
         ->orderBy('maturity', 'asc')
         ->get();
 
