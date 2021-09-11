@@ -28,7 +28,7 @@ class ProvisionController extends Controller
 
         $provisions = Provision::select('contract_id')->whereBetween('maturity',[now()->subMonth(6), now()->addDays(5)])
         ->orderBy('maturity', 'asc')
-        ->cursor();
+        ->get();
 
     return ProvisionPendingResource::collection($provisions);
     }
