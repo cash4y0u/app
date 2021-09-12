@@ -15,7 +15,9 @@
           <v-list-tile-content>
             <v-list-tile-title>{{item.customer.name}}</v-list-tile-title>
             <v-list-tile-sub-title>{{ item.maturity }} <v-chip small label><small>{{item.dayOfWeek}}</small></v-chip></v-list-tile-sub-title>
-            <v-list-tile-sub-title>{{ item.customer.address }}</v-list-tile-sub-title>
+            <v-list-tile-sub-title v-for="(item, index) in item.customer.adresses" :key="index">
+              <div v-if="item.favorite">{{item.street}}, {{item.number}} - {{item.district}}</div> 
+            </v-list-tile-sub-title>
             <v-list-tile-sub-title>R$ {{ item.amount }}</v-list-tile-sub-title>
           </v-list-tile-content>
 
