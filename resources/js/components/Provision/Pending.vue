@@ -18,7 +18,7 @@
             <v-list-tile-sub-title class="text--primary"
             >R$ {{ item.amount }}</v-list-tile-sub-title>
             <v-list-tile-sub-title v-for="(item, index) in item.customer.adresses" :key="index">
-              <div v-if="item.favorite">{{item.street}}, {{item.number}} - {{item.district}}</div> 
+              <div v-if="item.favorite">{{item.street}}, {{item.number}}</div> 
             </v-list-tile-sub-title>
           </v-list-tile-content>
 
