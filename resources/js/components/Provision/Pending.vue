@@ -1,7 +1,7 @@
 <template>
 
   <v-list class="transparent"
-          two-line>
+          three-line>
 
     <template v-for="item in provisions.data">
 
