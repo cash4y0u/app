@@ -208,7 +208,7 @@ formatar(value){
       window.open(`mailto:${email}`, "_self");
     },
     sendText(number) {
-      window.open(`wa.me/55${number}`, "_self");
+      window.location.href = `https://wa.me/55${number}`
     },
     openWaze(item) {
       window.open(
