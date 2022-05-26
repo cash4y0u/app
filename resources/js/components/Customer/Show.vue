@@ -208,7 +208,7 @@ formatar(value){
       window.open(`mailto:${email}`, "_self");
     },
     sendText(number) {
-      window.open(`whatsapp://send?phone=55${number}`, "_self");
+      window.open(`wa.me/55${number}`, "_self");
     },
     openWaze(item) {
       window.open(
