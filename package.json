@@ -2,35 +2,35 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "development": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",
         "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "hot": "cross-env NODE_ENV=development webpack serve --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production webpack --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "axios": "^0.18.1",
-        "browser-sync": "^2.26.5",
-        "browser-sync-webpack-plugin": "^2.2.2",
-        "cross-env": "^5.2.0",
-        "laravel-mix": "^4.0.16",
-        "lodash": "^4.17.5",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.35.2",
-        "sass-loader": "^7.1.0",
-        "vue": "^2.6.10",
-        "vue-template-compiler": "^2.6.10"
+        "axios": "^1.4",
+        "browser-sync": "^2.29",
+        "browser-sync-webpack-plugin": "^2.3",
+        "cross-env": "^7.0",
+        "laravel-mix": "^6.0",
+        "lodash": "^4.17",
+        "resolve-url-loader": "^5.0",
+        "sass": "^1.68",
+        "sass-loader": "^12.0",
+        "vue": "^2.7",
+        "vue-template-compiler": "^2.7"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.8.2",
-        "@mdi/font": "^4.7.95",
-        "v-money": "^0.8.1",
-        "vee-validate": "^2.2.9",
-        "vue-google-charts": "^0.3.2",
-        "vue-qrcode-reader": "^2.0.1",
-        "vue-router": "^3.0.6",
-        "vuetify": "^1.5.14",
-        "vuex": "^3.1.1"
+        "@fortawesome/fontawesome-free": "^6.4",
+        "@mdi/font": "^7.0",
+        "v-money": "^0.9",
+        "vee-validate": "^3.4",
+        "vue-google-charts": "^0.4",
+        "vue-qrcode-reader": "^3.0",
+        "vue-router": "^3.6",
+        "vuetify": "^2.6",
+        "vuex": "^3.6"
     }
 }
